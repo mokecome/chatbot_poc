@@ -20,7 +20,6 @@
 3. 在專案 **Settings → Environment Variables** 新增：
    - `OPENAI_API_KEY`：OpenAI 服務金鑰（必填，不然後端會回傳友善的備援訊息）。
    - `POSTGRES_URL`（或 `POSTGRES_URL_NON_POOLING`）：啟用 Vercel Postgres 後會自動提供，後端會優先使用這些連線字串。
-   - （選填）`DATABASE_URL`：如需自訂資料庫位置可直接覆寫；若空缺且未設定 Postgres，後端才會退回 `/tmp/app.sqlite3`（僅適合本地測試）。
    - 其他自訂變數（如 `FRONTEND_ORIGIN`、`SYSTEM_PROMPT`）可依需求加入。
 4. 後端已透過 `api/index.py` 以 Flask 形式部署為 Vercel Serverless Function，所有 `/api/*` 路徑直接在同網域下存取；請先在 Vercel 儲存區啟用 Postgres 並完成資料庫遷移（可複製原有 SQLite 資料）。
 5. 部署完成後即可取得預覽與正式網址；確認功能正常後可一鍵 Promote。

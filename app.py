@@ -51,14 +51,9 @@ def _resolve_database_url() -> str:
     Determine which database connection string to use.
 
     Priority:
-    1. Explicit DATABASE_URL (allows overriding everything).
-    2. Vercel managed Postgres environment variables.
-    3. Local SQLite file (development fallback only).
+    1. Vercel managed Postgres environment variables.
+    2. Local SQLite file (development fallback only).
     """
-    explicit = os.getenv("DATABASE_URL")
-    if explicit:
-        return explicit
-
     vercel_pg_candidates = [
         os.getenv("POSTGRES_URL"),
         os.getenv("POSTGRES_PRISMA_URL"),
