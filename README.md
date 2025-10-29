@@ -23,3 +23,5 @@
    - 其他自訂變數（如 `FRONTEND_ORIGIN`、`SYSTEM_PROMPT`）可依需求加入。
 4. 後端已透過 `api/index.py` 以 Flask 形式部署為 Vercel Serverless Function，所有 `/api/*` 路徑直接在同網域下存取；請先在 Vercel 儲存區啟用 Postgres 並完成資料庫遷移（可複製原有 SQLite 資料）。
 5. 部署完成後即可取得預覽與正式網址；確認功能正常後可一鍵 Promote。
+
+> **注意**：`vercel.json` 已設定將 `/api/*` 轉送至 `api/index.py`，並指定 Python 3.11 運行環境，確保 Flask 伺服器在 Vercel 上正常處理請求。
