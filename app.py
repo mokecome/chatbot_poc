@@ -30,10 +30,51 @@ load_dotenv()
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-DEFAULT_DB_PATH = os.getenv("SQLITE_PATH") or os.path.join(BASE_DIR, "app.sqlite3")
-DATABASE_URL = os.getenv("DATABASE_URL") or f"sqlite:///{DEFAULT_DB_PATH}"
 
-_ENGINE_KWARGS: Dict[str, Any] = {"future": True}
+def _default_storage_base() -> str:
+    """
+    Determine where to place writable artifacts (SQLite, uploads).
+
+    When running on Vercel or other serverless providers, the project directory
+    is read-only and we must fall back to a tmp filesystem.
+    """
+    if os.getenv("VERCEL") or os.getenv("VERCEL_ENV"):
+        return os.getenv("TMPDIR") or os.getenv("TEMP") or "/tmp"
+    return BASE_DIR
+
+
+STORAGE_BASE = _default_storage_base()
+
+
+def _resolve_database_url() -> str:
+    """
+    Determine which database connection string to use.
+
+    Priority:
+    1. Explicit DATABASE_URL (allows overriding everything).
+    2. Vercel managed Postgres environment variables.
+    3. Local SQLite file (development fallback only).
+    """
+    explicit = os.getenv("DATABASE_URL")
+    if explicit:
+        return explicit
+
+    vercel_pg_candidates = [
+        os.getenv("POSTGRES_URL"),
+        os.getenv("POSTGRES_PRISMA_URL"),
+        os.getenv("POSTGRES_URL_NON_POOLING"),
+    ]
+    for candidate in vercel_pg_candidates:
+        if candidate:
+            return candidate
+
+    default_sqlite = os.getenv("SQLITE_PATH") or os.path.join(STORAGE_BASE, "app.sqlite3")
+    return f"sqlite:///{default_sqlite}"
+
+
+DATABASE_URL = _resolve_database_url()
+
+_ENGINE_KWARGS: Dict[str, Any] = {"future": True, "pool_pre_ping": True}
 if DATABASE_URL.startswith("sqlite"):
     _ENGINE_KWARGS["connect_args"] = {"check_same_thread": False}
 
@@ -48,7 +89,7 @@ if engine.url.get_backend_name() == "sqlite":
 
 
 ASSET_ROUTE_PREFIX = os.getenv("ASSET_ROUTE_PREFIX", "/uploads")
-ASSET_LOCAL_DIR = os.getenv("ASSET_LOCAL_DIR") or os.path.join(BASE_DIR, "uploads")
+ASSET_LOCAL_DIR = os.getenv("ASSET_LOCAL_DIR") or os.path.join(STORAGE_BASE, "uploads")
 os.makedirs(ASSET_LOCAL_DIR, exist_ok=True)
 
 logging.basicConfig(level=logging.INFO)
