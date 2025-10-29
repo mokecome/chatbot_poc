@@ -342,6 +342,7 @@ def format_sse(payload: Dict[str, Any]) -> str:
 
 
 @app.post("/api/chat")
+@app.post("/chat")
 def api_chat():
     if not request.is_json:
         return jsonify({"error": "Payload must be JSON."}), 400
