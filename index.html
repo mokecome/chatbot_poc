@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STARBIT 思偉達創新科技 | AI+Web3 智慧防詐</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        starblue: '#0F3460',
+                        starlight: '#1A508B',
+                        stargray: '#F5F5F7',
+                        staraccent: '#E94560',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .bg-gradient-star {
+                background: linear-gradient(135deg, #0F3460 0%, #1A508B 100%);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+            }
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-white">
+    <!-- 導航欄 -->
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/95 shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <a href="#" class="flex items-center space-x-2">
+                    <div class="text-starblue text-2xl font-bold">STARBIT</div>
+                    <div class="text-gray-500 text-sm hidden sm:inline-block">思偉達創新科技</div>
+                </a>
+
+                <!-- 桌面導航 -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-starblue font-medium">關於我們</a>
+                    <a href="#achievements" class="text-gray-600 hover:text-starblue font-medium">我們的成就</a>
+                    <a href="#services" class="text-gray-600 hover:text-starblue font-medium">核心服務</a>
+                    <a href="#news" class="text-gray-600 hover:text-starblue font-medium">新聞動態</a>
+                    <a href="#contact" class="text-gray-600 hover:text-starblue font-medium">聯繫我們</a>
+                </nav>
+
+                <!-- 行動端菜單按鈕 -->
+                <button id="menuBtn" class="md:hidden text-gray-600 focus:outline-none">
+                    <i class="fa fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 行動端導航菜單 -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-3 space-y-3">
+                <a href="#about" class="block text-gray-600 hover:text-starblue py-2">關於我們</a>
+                <a href="#achievements" class="block text-gray-600 hover:text-starblue py-2">我們的成就</a>
+                <a href="#services" class="block text-gray-600 hover:text-starblue py-2">核心服務</a>
+                <a href="#news" class="block text-gray-600 hover:text-starblue py-2">新聞動態</a>
+                <a href="#contact" class="block text-gray-600 hover:text-starblue py-2">聯繫我們</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 首頁Banner -->
+    <section class="pt-24 md:pt-32 pb-16 md:pb-24 bg-gradient-star text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight text-shadow mb-6">
+                    AI + Web3 鏈上信任與防詐 DX 數位場域
+                </h1>
+                <p class="text-[clamp(1rem,2vw,1.25rem)] text-blue-100 mb-8 max-w-2xl mx-auto">
+                    信任科技，守護數位資產安全，打造智慧防詐生態圈，推動智慧城市與Web3產業創新
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#services" class="bg-white text-starblue font-medium py-3 px-8 rounded-lg hover:bg-blue-50 transition-colors">
+                        了解服務
+                    </a>
+                    <a href="#contact" class="bg-transparent border-2 border-white text-white font-medium py-3 px-8 rounded-lg hover:bg-white/10 transition-colors">
+                        預約諮詢
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 關於我們 -->
+    <section id="about" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-starblue mb-4">關於 STARBIT 思偉達</h2>
+                <p class="text-gray-600 text-lg">思考，達成未來的美好</p>
+                <div class="w-20 h-1 bg-staraccent mx-auto mt-6"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-xl font-semibold text-starblue mb-4">企業願景</h3>
+                    <p class="text-gray-700 mb-6">
+                        STARBIT 思偉達創新科技是台灣區塊鏈與AI防詐領域的先驅企業，成功加入 NVIDIA Inception 計劃，
+                        專注於 AI + Web3 技術融合，打造鏈上信任與防詐體系，為企業、金融機構及一般用戶提供安全、高效的數位信任服務。
+                    </p>
+                    <h3 class="text-xl font-semibold text-starblue mb-4">核心團隊</h3>
+                    <p class="text-gray-700 mb-6">
+                        團隊成員來自淡江大學資訊工程系、京元電子、南亞科技、美商 SUPERMICRO 等知名學府與企業，
+                        具備深厚的技術研發與產業實戰經驗，在區塊鏈、AI、資安領域擁有多年累積。
+                    </p>
+                    <h3 class="text-xl font-semibold text-starblue mb-4">名人推薦</h3>
+                    <div class="bg-stargray p-6 rounded-lg">
+                        <p class="text-gray-700 italic mb-4">
+                            「思偉達是一家定位清楚、目標明確、技術領先的區塊鏈公司，是一個值得信賴的品牌。」
+                        </p>
+                        <p class="text-starblue font-medium">— 台南藝術大學 元宇宙學院院長 黃俊堯</p>
+                    </div>
+                </div>
+                <div class="bg-stargray p-8 rounded-xl shadow-sm">
+                    <h3 class="text-xl font-semibold text-starblue mb-6 text-center">組織核心成員</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-starblue/10 rounded-full flex items-center justify-center text-starblue">
+                                <i class="fa fa-user text-2xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-starblue">Sway Teng</p>
+                                <p class="text-gray-600 text-sm">執行長/共同創辦人</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-starblue/10 rounded-full flex items-center justify-center text-starblue">
+                                <i class="fa fa-user text-2xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-starblue">Winson Chen</p>
+                                <p class="text-gray-600 text-sm">共同創辦人</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-starblue/10 rounded-full flex items-center justify-center text-starblue">
+                                <i class="fa fa-user text-2xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-starblue">Tin Wang</p>
+                                <p class="text-gray-600 text-sm">營運長/共同創辦人</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-starblue/10 rounded-full flex items-center justify-center text-starblue">
+                                <i class="fa fa-user text-2xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-starblue">Patrick Teng</p>
+                                <p class="text-gray-600 text-sm">資訊安全長</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 我們的成就 -->
+    <section id="achievements" class="py-16 md:py-24 bg-stargray">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-starblue mb-4">我們的成就</h2>
+                <p class="text-gray-600 text-lg">以技術實力創造產業價值，用數據見證信任科技的力量</p>
+                <div class="w-20 h-1 bg-staraccent mx-auto mt-6"></div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- 成就1: AI智慧防詐 -->
+                <div class="bg-white p-8 rounded-xl shadow-sm card-hover">
+                    <div class="text-staraccent text-4xl mb-4">
+                        <i class="fa fa-shield"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-starblue mb-2">AI 智慧防詐 & 信任中心</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-starblue mt-1 mr-2"></i>
+                            <span>標籤化鏈上資料 <span class="font-bold">20億+</span> 筆</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-starblue mt-1 mr-2"></i>
+                            <span>分析查驗時間低於 <span class="font-bold">50</span> 秒</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-starblue mt-1 mr-2"></i>
+                            <span>AI 精準度高於其他 <span class="font-bold">65%</span></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 成就2: Web3資安審查 -->
+                <div class="bg-white p-8 rounded-xl shadow-sm card-hover">
+                    <div class="text-staraccent text-4xl mb-4">
+                        <i class="fa fa-code"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-starblue mb-2">Web3 資安審查認證 (BCA)</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-starblue mt-1 mr-2"></i>
+                            <span>涵蓋產業 <span class="font-bold">9</span> 類別</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-starblue mt-1 mr-2"></i>
+                            <span>發出認證標章 <span class="font-bold">15</span> 項</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-starblue mt-1 mr-2"></i>
+                            <span>審核程式碼超過 <span class="font-bold">25,000</span> 行</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 成就3: 智慧城市-藝遊桃園 -->
+                <div class="bg-white p-8 rounded-xl shadow-sm card-hover">
+                    <div class="text-staraccent text-4xl mb-4">
+                        <i class="fa fa-map-marker"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-starblue mb-2">智慧城市「藝遊桃園」</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-starblue mt-1 mr-2"></i>
+                            <span>總參與遊客人次 <span class="font-bold">831,402</span> 位</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-starblue mt-1 mr-2"></i>
+                            <span>數位集章發放 <span class="font-bold">1,019,945</span> 個</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-starblue mt-1 mr-2"></i>
+                            <span>商家景點串聯 <span class="font-bold">443</span> 家</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 成就4: 智慧城市-漫遊寶島 -->
+                <div class="bg-white p-8 rounded-xl shadow-sm card-hover">
+                    <div class="text-staraccent text-4xl mb-4">
+                        <i class="fa fa-globe"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-starblue mb-2">智慧城市「漫遊寶島」</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-starblue mt-1 mr-2"></i>
+                            <span>總會員人數 <span class="font-bold">45,519</span> 人</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-starblue mt-1 mr-2"></i>
+                            <span>累積活躍互動 <span class="font-bold">130,000</span> 次</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-check text-starblue mt-1 mr-2"></i>
+                            <span>參與國家數量 <span class="font-bold">9</span> 國</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心服務 -->
+    <section id="services" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-starblue mb-4">核心服務</h2>
+                <p class="text-gray-600 text-lg">以 AI + Web3 技術為核心，提供全方位數位信任與智慧應解決方案</p>
+                <div class="w-20 h-1 bg-staraccent mx-auto mt-6"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- 服務1: AI智慧防詐 -->
+                <div class="flex flex-col md:flex-row gap-6 items-center md:items-start">
+                    <div class="w-20 h-20 bg-starblue/10 rounded-full flex items-center justify-center text-starblue text-3xl flex-shrink-0">
+                        <i class="fa fa-shield"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-starblue mb-3">AI 智慧防詐 & 信任中心 (JV)</h3>
+                        <p class="text-gray-700 mb-4">
+                            藉由 AI 演算法與零知識證明技術，分析巨量並標籤化鏈上資料，支援一般用戶、企業、交易所、金融機構透過 JV 驗證、
+                            JK 即時監控、JM 鏈上金流分析，應對鏈上交易風險，降低金融損失。
+                        </p>
+                        <p class="text-gray-700">
+                            可查詢超過 30,000 種虛擬貨幣與 20,000 種數位資產的真實性與信任分數，提供客觀數據參考。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 服務2: Web3資安檢測 -->
+                <div class="flex flex-col md:flex-row gap-6 items-center md:items-start">
+                    <div class="w-20 h-20 bg-starblue/10 rounded-full flex items-center justify-center text-starblue text-3xl flex-shrink-0">
+                        <i class="fa fa-code"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-starblue mb-3">Web3 資安檢測認證 (BCA)</h3>
+                        <p class="text-gray-700 mb-4">
+                            與倚天酷碁團隊合作推出「區塊鏈合約檢測服務」，替智能合約進行全面性審查，抓出漏洞與邏輯問題，
+                            出具審計報告並提出優化建議，為 Web3 生態提供堅固的資安後盾。
+                        </p>
+                        <p class="text-gray-700">
+                            已服務包含金融、文旅、藝術等 9 大產業，累計審核程式碼超過 25,000 行。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 服務3: 智慧城市 -->
+                <div class="flex flex-col md:flex-row gap-6 items-center md:items-start">
+                    <div class="w-20 h-20 bg-starblue/10 rounded-full flex items-center justify-center text-starblue text-3xl flex-shrink-0">
+                        <i class="fa fa-city"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-starblue mb-3">智慧城市 – DX 數位化場域</h3>
+                        <p class="text-gray-700 mb-4">
+                            利用區塊鏈將 IP 與數位藝術結合，提供全新交換模式；透過數位集章將文化古蹟、旅遊景點、地方商圈進行場域串連整合，
+                            以簡易操作帶動地方文旅及商圈數位化轉型。
+                        </p>
+                        <p class="text-gray-700">
+                            代表案例：「藝遊桃園」文化行旅平台、「漫遊寶島」數位集章平台、「FunTainan 樂遊臺南」平台。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 服務4: AI算力與硬體 -->
+                <div class="flex flex-col md:flex-row gap-6 items-center md:items-start">
+                    <div class="w-20 h-20 bg-starblue/10 rounded-full flex items-center justify-center text-starblue text-3xl flex-shrink-0">
+                        <i class="fa fa-server"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-starblue mb-3">AI 算力與硬體服務</h3>
+                        <p class="text-gray-700 mb-4">
+                            結合 AI 研發量能提供製造業 AI 預訓練工具與智能判讀分類服務，代理 MSI 微星科技全系列伺服器，
+                            實現軟硬服務一體化。
+                        </p>
+                        <p class="text-gray-700">
+                            規劃 2026 年於台南沙崙提供 AI 算力服務，協助傳統產業無痛導入 AI 智慧化工具。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 新聞動態 -->
+    <section id="news" class="py-16 md:py-24 bg-stargray">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-starblue mb-4">新聞動態</h2>
+                <p class="text-gray-600 text-lg">追蹤 STARBIT 最新產業動態與技術突破</p>
+                <div class="w-20 h-1 bg-staraccent mx-auto mt-6"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 新聞1 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden card-hover">
+                    <div class="h-48 bg-starblue/5 flex items-center justify-center">
+                        <i class="fa fa-newspaper-o text-5xl text-starblue/30"></i>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-500 text-sm mb-2">2025.02.24</p>
+                        <h3 class="text-lg font-semibold text-starblue mb-3">STARBIT 與 NVIDIA 合作 AI 智慧防詐</h3>
+                        <p class="text-gray-700 mb-4">
+                            STARBIT 執行長鄧萬偉表示，公司是台灣唯一一家在 Web3 領域與 NVIDIA 合作 AI 智慧防詐的企業，
+                            透過 Jcard Verify 工具為區塊鏈投資者提供資產安全保障。
+                        </p>
+                        <a href="#" class="text-starblue font-medium hover:underline">閱讀更多 <i class="fa fa-angle-right ml-1"></i></a>
+                    </div>
+                </div>
+
+                <!-- 新聞2 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden card-hover">
+                    <div class="h-48 bg-starblue/5 flex items-center justify-center">
+                        <i class="fa fa-newspaper-o text-5xl text-starblue/30"></i>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-500 text-sm mb-2">2024.11.20</p>
+                        <h3 class="text-lg font-semibold text-starblue mb-3">JV 數位信任中心保障幣圈投資安全</h3>
+                        <p class="text-gray-700 mb-4">
+                            面對川普勝選掀起的幣圈熱潮，STARBIT 推出的 JV 數位信任中心透過 AI 交叉分析風險地址數據，
+                            幫助投資人防範詐騙風險，評估數位資產信任分數。
+                        </p>
+                        <a href="#" class="text-starblue font-medium hover:underline">閱讀更多 <i class="fa fa-angle-right ml-1"></i></a>
+                    </div>
+                </div>
+
+                <!-- 新聞3 -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden card-hover">
+                    <div class="h-48 bg-starblue/5 flex items-center justify-center">
+                        <i class="fa fa-newspaper-o text-5xl text-starblue/30"></i>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-500 text-sm mb-2">2024.05.27</p>
+                        <h3 class="text-lg font-semibold text-starblue mb-3">STARBIT 與日本 KIT 大學締約合作</h3>
+                        <p class="text-gray-700 mb-4">
+                            STARBIT 與日本金澤工業大學正式簽署 MOU，導入台灣區塊鏈與 AI 技術，
+                            共同研發「遠距離戀愛機器人系統」與「Web3 樂遊城市集章平台」。
+                        </p>
+                        <a href="#" class="text-starblue font-medium hover:underline">閱讀更多 <i class="fa fa-angle-right ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block bg-starblue text-white font-medium py-3 px-8 rounded-lg hover:bg-starlight transition-colors">
+                    查看所有新聞 <i class="fa fa-angle-right ml-1"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 聯繫我們 -->
+    <section id="contact" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-starblue mb-4">聯繫我們</h2>
+                <p class="text-gray-600 text-lg">歡迎洽詢合作，我們將盡快回覆您的需求</p>
+                <div class="w-20 h-1 bg-staraccent mx-auto mt-6"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- 聯繫表單 -->
+                <div>
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 font-medium mb-2">您的姓名</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-starblue focus:border-transparent" placeholder="請輸入姓名">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-2">聯繫信箱</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-starblue focus:border-transparent" placeholder="請輸入信箱">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-gray-700 font-medium mb-2">聯繫電話</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-starblue focus:border-transparent" placeholder="請輸入電話">
+                        </div>
+                        <div>
+                            <label for="service" class="block text-gray-700 font-medium mb-2">諮詢服務</label>
+                            <select id="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-starblue focus:border-transparent">
+                                <option value="">請選擇服務類型</option>
+                                <option value="ai-fraud">AI 智慧防詐服務</option>
+                                <option value="web3-security">Web3 資安檢測</option>
+                                <option value="smart-city">智慧城市合作</option>
+                                <option value="ai-computing">AI 算力服務</option>
+                                <option value="other">其他諮詢</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 font-medium mb-2">諮詢內容</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-starblue focus:border-transparent" placeholder="請輸入您的需求或問題"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-starblue text-white font-medium py-3 px-6 rounded-lg hover:bg-starlight transition-colors">
+                            提交諮詢 <i class="fa fa-paper-plane ml-1"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- 聯繫資訊 -->
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-starblue mb-4">聯繫資訊</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="w-10 h-10 bg-starblue/10 rounded-full flex items-center justify-center text-starblue flex-shrink-0 mt-1">
+                                    <i class="fa fa-envelope"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-gray-700 font-medium">電子信箱</p>
+                                    <p class="text-gray-600">service@star-bit.io</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-10 h-10 bg-starblue/10 rounded-full flex items-center justify-center text-starblue flex-shrink-0 mt-1">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-gray-700 font-medium">電話</p>
+                                    <p class="text-gray-600">+886 2-2228-7600</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-10 h-10 bg-starblue/10 rounded-full flex items-center justify-center text-starblue flex-shrink-0 mt-1">
+                                    <i class="fa fa-map-marker"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-gray-700 font-medium">總部地址</p>
+                                    <p class="text-gray-600">臺北市中正區博愛路 80 號 13 樓</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-starblue mb-4">辦公據點</h3>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-center">
+                                <i class="fa fa-map-pin text-starblue mr-3"></i>
+                                <span>臺南：臺南市中西區民生路一段 100 號</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-map-pin text-starblue mr-3"></i>
+                                <span>沙崙：臺南市歸仁區歸仁十三路一段 6 號</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fa fa-map-pin text-starblue mr-3"></i>
+                                <span>日本：大阪府大阪市北區中之島三丁目 1 番 8 號 2 樓</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-starblue mb-4">LINE 預約諮詢</h3>
+                        <div class="bg-stargray p-4 rounded-lg inline-block">
+                            <p class="text-gray-700 mb-2">掃描 QR Code 加入諮詢</p>
+                            <div class="w-32 h-32 bg-white flex items-center justify-center border border-gray-200 rounded-lg">
+                                <i class="fa fa-qrcode text-5xl text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁腳 -->
+    <footer class="bg-starblue text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- 企業資訊 -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">STARBIT</h3>
+                    <p class="text-blue-100 mb-4">思偉達創新科技</p>
+                    <p class="text-blue-200 text-sm">
+                        AI + Web3 鏈上信任與防詐 DX 數位場域，打造智慧防詐生態圈，推動數位信任科技發展。
+                    </p>
+                </div>
+
+                <!-- 快速連結 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">快速連結</h3>
+                    <ul class="space-y-2 text-blue-200">
+                        <li><a href="#about" class="hover:text-white transition-colors">關於我們</a></li>
+                        <li><a href="#achievements" class="hover:text-white transition-colors">我們的成就</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">核心服務</a></li>
+                        <li><a href="#news" class="hover:text-white transition-colors">新聞動態</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">加入我們</a></li>
+                    </ul>
+                </div>
+
+                <!-- 服務項目 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">服務項目</h3>
+                    <ul class="space-y-2 text-blue-200">
+                        <li><a href="#" class="hover:text-white transition-colors">AI 智慧防詐 (JV)</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Web3 資安檢測 (BCA)</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">智慧城市 DX 場域</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">AI 算力與硬體服務</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">NFT 與元宇宙應用</a></li>
+                    </ul>
+                </div>
+
+                <!-- 社群媒體 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">社群媒體</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+                            <i class="fa fa-youtube-play"></i>
+                        </a>
+                    </div>
+                    <p class="text-blue-200 text-sm">
+                        Youtube 頻道：Sway 鏈肖偉官方頻道<br>
+                        探索 Web3 / 區塊鏈技術與信任科技
+                    </p>
+                </div>
+            </div>
+
+            <div class="border-t border-blue-800 mt-12 pt-8 text-center text-blue-300 text-sm">
+                <p>© 2025 STARBIT 思偉達創新科技. 保留所有權利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 行動端菜單切換
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 導航欄滾動效果
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.remove('shadow-sm');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.add('shadow-sm');
+            }
+        });
+
+        // 平滑滾動
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // 關閉行動端菜單
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Python cache
+__pycache__/
+
+# Local configs and env
+.env
+.claude/
+
+# SQLite database
+app.sqlite3
+
+# OS files
+Thumbs.db
+.DS_Store
