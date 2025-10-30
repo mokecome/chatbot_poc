@@ -36,6 +36,7 @@ export function MarkdownText({ children, className, style }: MarkdownTextProps) 
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-500 hover:text-blue-700 underline cursor-pointer"
+              style={{ wordBreak: 'break-all', overflowWrap: 'break-word' }}
               onClick={(e) => e.stopPropagation()}
             >
               {part}
@@ -72,7 +73,14 @@ export function MarkdownText({ children, className, style }: MarkdownTextProps) 
   };
 
   return (
-    <div className={className} style={style}>
+    <div
+      className={className}
+      style={{
+        ...style,
+        wordBreak: 'break-word',
+        overflowWrap: 'break-word'
+      }}
+    >
       {parseMarkdown(children)}
     </div>
   );
