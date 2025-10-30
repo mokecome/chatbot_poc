@@ -108,7 +108,7 @@ export function Chatbot() {
   };
 
   return (
-    <div className="flex flex-col h-full max-w-4xl mx-auto">
+    <div className="flex flex-col h-full max-w-6xl mx-auto">
       <Card className="flex-1 flex flex-col shadow-xl border-0 overflow-hidden">
         <CardHeader
           className="border-b text-white"

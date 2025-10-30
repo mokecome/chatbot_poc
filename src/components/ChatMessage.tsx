@@ -21,7 +21,7 @@ export function ChatMessage({ message, isUser, timestamp }: ChatMessageProps) {
         </Avatar>
       )}
       
-      <div className={`max-w-[70%] ${isUser ? 'order-first' : ''}`} style={{ userSelect: 'text', WebkitUserSelect: 'text', WebkitTouchCallout: 'default' }}>
+      <div className={`max-w-[85%] ${isUser ? 'order-first' : ''}`} style={{ userSelect: 'text', WebkitUserSelect: 'text', WebkitTouchCallout: 'default' }}>
         <Card className={`p-3 ${
           isUser
             ? 'text-white ml-auto border-0'
