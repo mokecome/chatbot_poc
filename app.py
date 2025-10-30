@@ -108,16 +108,195 @@ def get_openai_client() -> Optional[OpenAI]:
     return OpenAI(api_key=OPENAI_API_KEY)
 
 
-SYSTEM_PROMPT = os.getenv(
-    "SYSTEM_PROMPT",
-    """You are the virtual concierge for Stellar International Hotel. Provide information only about this property and follow these principles:
-    1. Cover room types, rates, add-on packages, check-in/out, dining & bar venues, events, facilities, transportation, and loyalty benefits.
-    2. Politely decline topics unrelated to the hotel (e.g., other attractions or politics) and suggest calling +886-2-1234-5678 or emailing concierge@stellarhotel.tw for further help.
-    3. Answer in Traditional Chinese with a warm, professional tone. Use lists or step-by-step guidance when it improves clarity and highlight 24/7 concierge support.
-    4. When details are uncertain, invite guests to confirm with on-duty staff to ensure accuracy.
-    5. Protect privacy: request only contact details required for bookings or service follow-up.
-    Maintain these guidelines so every guest receives an exceptional stay experience."""
+SYSTEM_PROMPT = (
+    os.getenv("SYSTEM_PROMPT")
+    or (
+        '''你是一位親切、專業且自然的客服聊天機器人，服務於「水漾月明度假文旅（Hana Mizu Tsuki Hotel）」。
+
+你擁有一份詳細的 Markdown 資料（以下稱為「飯店說明文件」），內容包含：
+1. 房型與價格
+2. 交通與聯絡資訊
+3. 優惠方案（如水上腳踏車住房專案）
+4. 設施介紹
+5. 訂房連結
+6. 環保政策
+7. 周邊景點介紹
+
+---
+
+### 🎯 你的任務：
+
+1️⃣ **回答基本問題**  
+- 若使用者詢問旅遊、住宿、交通、價格、設施、政策、優惠或周邊景點等問題，請根據「飯店說明文件」中的資訊直接回答。  
+- 若問題與住宿無關，先友善回應，再自然轉回飯店話題，例如：  
+  「這個問題很有趣呢～順帶一提，您這次是打算來苗栗旅遊嗎？我可以幫您介紹一下我們的房型！」  
+
+2️⃣ **推薦訂房**  
+- 根據使用者條件（人數、日期、預算、是否想看湖景、是否親子入住等）主動推薦合適房型。  
+- 每次推薦需包含：
+  - 房型名稱  
+  - 價格 / 晚  
+  - 房內設施或特色  
+  - 若有對應優惠專案（如水上腳踏車方案），請一起說明  
+  - 相關網頁連結  
+- 若條件不足，請主動詢問，例如：「請問您預計幾位入住？需要湖景房或浴缸嗎？」
+
+3️⃣ **行動引導**  
+- 回答結尾請附上引導句，例如：  
+  「👉 要我幫您看看哪一天還有空房嗎？」  
+  或  
+  「👉 您可直接點這裡訂房：https://res.windsurfercrs.com/ibe/index.aspx?propertyID=17658&nono=1&lang=zh-tw&adults=2」  
+
+---
+
+### 💡 回覆風格：
+- 溫暖、自然、有生活感，像真人客服。
+- 適度加入體驗感描述，例如：「很多客人都說晚上泡澡看湖景超放鬆！」  
+- 盡量用繁體中文回答。
+
+---
+
+### ⚙️ 回答邏輯範例：
+
+**使用者問：**「你們有幾種房型？」  
+**回答：**  
+目前共有八種房型可選：  
+- 豪華雙人房 — $12,000／晚，日式軟墊與浴缸 👉 [查看詳情](http://www.younglake.com.tw/Home/ProductsDetail/3)  
+- 湖景雙人房 — $14,000／晚，一大床或兩小床，側湖景  
+- …（可依需要列出3～4項）  
+若您想體驗湖上活動，我建議考慮【水上腳踏車住房專案】，平日雙人房只要 $3,980 起。  
+👉 要我幫您查一下這週末的空房嗎？
+
+---
+
+### 🧾 使用說明：
+在初始化模型時：
+- 將此提示詞放在 `system` 或 `instruction` 層級。  
+- 將整份 Markdown 文檔（# 水漾月明度假文旅 開頭的內容）放在 `user` 層級。  
+- 模型即可依照文件回答與推薦。'''
+    )
 )
+USER_PROMPT = os.getenv("USER_PROMPT") or '''# 水漾月明度假文旅（Hana Mizu Tsuki Hotel）信息总览
+
+## (一) 客房資訊
+
+| 房型 | 價格 / 晚 | 床型與設施 | 網頁連結 |
+|------|-------------|-------------|-----------|
+| 豪華雙人房（床型若需指定請來電洽詢） | $12,000元 | 日式軟墊・浴缸 | [連結](http://www.younglake.com.tw/Home/ProductsDetail/3) |
+| 湖景雙人房（側湖景） | $14,000元 | 一大床・兩小床 | [連結](http://www.younglake.com.tw/Home/ProductsDetail/5) |
+| 豪華三人房 | $15,000元 | 一大一小床・浴缸 | [連結](http://www.younglake.com.tw/Home/ProductsDetail/6) |
+| 湖景四人房（床型若需指定請來電洽詢） | $22,000元 | 兩大床・浴缸 | [連結](http://www.younglake.com.tw/Home/ProductsDetail/7) |
+| 豪華四人房（床型若需指定請來電洽詢） | $18,000元 | 兩大床・浴缸 | [連結](http://www.younglake.com.tw/Home/ProductsDetail/9) |
+| 家庭四人房 | $25,000元 | 兩大床・客廳・浴缸 | [連結](http://www.younglake.com.tw/Home/ProductsDetail/8) |
+| 蜜月雙人房 | $13,000元 | 一大床・客廳・浴缸 | [連結](http://www.younglake.com.tw/Home/ProductsDetail/2) |
+| 水漾套房（正湖景） | $20,000元 | 一大床・浴缸 | [連結](http://www.younglake.com.tw/Home/ProductsDetail/1) |
+
+---
+
+## (二) 交通與聯絡資訊
+
+- **飯店名稱**：水漾月明度假文旅（Hana Mizu Tsuki Hotel）
+- **地址**：362苗栗縣頭屋鄉明德路54號
+- **Google 地圖**：[前往地圖](https://www.google.com/maps?ll=24.585596,120.887298&z=17&t=m&hl=zh-TW&gl=US&mapclient=embed&cid=709365327370099103)
+- **電話**：037-255-358
+- **Email**：mizutsukihotel@gmail.com
+
+---
+
+## (三) 優惠方案 — 水上腳踏車住房專案
+
+- **合作單位**：水漾月明 × 海棠島水域遊憩中心
+- **活動日期**：114/8/28 ~ 114/10/30
+
+### ❤️ 專案內容
+**湖上同樂暢快大冒險 🏄 一泊一食（含早餐）**
+
+#### 🍀 平日價格
+| 房型 | 價格 |
+|------|------|
+| 豪華雙人房 | 3980元 |
+| 湖景雙人房 | 4980元 |
+| 豪華三人房 | 5300元 |
+| 豪華四人房 | 6380元 |
+
+#### 🍀 週六價格
+| 房型 | 價格 |
+|------|------|
+| 豪華雙人房 | 4880元 |
+| 湖景雙人房 | 7280元 |
+| 豪華三人房 | 6280元 |
+| 豪華四人房 | 7380元 |
+
+---
+
+### 🎉 專案贈送
+1. 早餐（依房型人數贈送）
+2. 水上自行車兌換券（半小時）－價值350元 / 張
+3. 7歲以下孩童不佔床不收費（早餐需另收費）
+4. 小孩身高須滿120公分以上方可自行騎乘水上自行車
+
+---
+
+### 水上自行車兌換券注意事項
+1. 贈送數量依房型人數（雙人房2張 / 三人房3張 / 四人房4張）
+2. 需於入住日一個月內使用完畢，逾期或遺失不予補發
+3. 需於海棠島現場兌換並遵守設施安全規範
+4. 小孩身高須滿120公分以上方可自行騎乘
+5. 票券使用須先致電海棠島預約（非教練陪同券，若需教練陪同需加價）
+6. 加購海棠島水域遊憩中心 Span Outdoor 相關活動（SUP / 獨木舟 / 水上自行車）可享 **9折優惠**
+
+---
+
+### ♥️ 暑假優惠再加碼
+專案可加購 **水漾環湖電動自行車**
+- $250元 / 台 / 2.5小時（再贈飲料一瓶）
+- 騎乘至海棠島僅需約15分鐘
+
+---
+
+## (四) 設施介紹
+
+| 設施 | 網頁連結 | 備註 |
+|------|-----------|------|
+| 環湖電動自行車 | [連結](http://www.younglake.com.tw/Home/FacilityDetail/14) | 可租借 |
+| 渡假會議 | [連結](http://www.younglake.com.tw/Home/FacilityDetail/4) | 適合商務與活動 |
+| 汗蒸幕體驗 | [連結](http://www.younglake.com.tw/Home/FacilityDetail/11) | 放鬆身心 |
+| 西餐廳 | [連結](http://www.younglake.com.tw/Home/FacilityDetail/7) | 中式桌菜・客家風味・歐式百匯<br>預約專線：037-255358 |
+| 視聽室 | [連結](http://www.younglake.com.tw/Home/FacilityDetail/6) | 影音娛樂空間 |
+| 水漾小賽車手俱樂部 | [連結](http://www.younglake.com.tw/Home/FacilityDetail/10) | 兒童遊樂設施 |
+| 24SHOP 智能販賣機 | [連結](http://www.younglake.com.tw/Home/FacilityDetail/8) | 無人販售服務 |
+| 清潔服務機器人 | [連結](http://www.younglake.com.tw/Home/FacilityDetail/12) | 智能清潔體驗 |
+
+---
+
+## (五) 訂房資訊
+[立即訂房 ➜](https://res.windsurfercrs.com/ibe/index.aspx?propertyID=17658&nono=1&lang=zh-tw&adults=2)
+
+---
+
+## (六) 環保政策 — 一次性備品提供
+自 **2025年1月1日** 起，客房將不再提供一次性備品。  
+建議旅客自行攜帶個人盥洗用品，如有需求可洽櫃檯。  
+造成不便之處，敬請見諒。
+
+---
+
+## (七) 周邊景點介紹
+
+### 湖畔與水上活動
+- **日新島**：全台唯一位於水庫中的島嶼，可步行或騎自行車前往。
+- **海棠島水域遊憩中心**：距離飯店約9分鐘車程，提供 SUP、獨木舟、水上自行車等活動。
+- **明德水庫環湖**：沿途可欣賞湖光山色，部分路段設有自行車道。
+
+### 森林與花園
+- **橙香森林**：擁有玻璃屋與橙香隧道，適合親子休閒。
+- **雅聞玫瑰園**：以玫瑰花為主題的休閒農場。
+- **葛瑞絲香草田**：距離飯店約2分鐘車程，可欣賞各式香草植物。
+
+### 其他推薦
+- **皇家高爾夫球場**：適合高爾夫愛好者。
+- **魯冰花休閒農莊**：提供餐飲與湖畔休閒空間。
+- **卓也小屋**：可體驗藍染、在地料理與綠色旅遊活動。'''
 
 
 def utcnow() -> datetime.datetime:
@@ -309,7 +488,11 @@ def fetch_chat_history(session_id: str, limit: int = 12) -> List[Dict[str, Any]]
 
 def build_assistant_messages(history: Iterable[Dict[str, str]], user_content: str) -> List[Dict[str, str]]:
     """Prepare the message payload for the OpenAI Responses API."""
-    messages: List[Dict[str, str]] = [{"role": "system", "content": SYSTEM_PROMPT}]
+    messages: List[Dict[str, str]] = []
+    if SYSTEM_PROMPT:
+        messages.append({"role": "system", "content": SYSTEM_PROMPT})
+    if USER_PROMPT:
+        messages.append({"role": "user", "content": USER_PROMPT})
     for item in history:
         role = item.get("role")
         content = (item.get("content") or "").strip()
