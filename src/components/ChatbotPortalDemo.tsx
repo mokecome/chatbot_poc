@@ -59,7 +59,7 @@ export function ChatbotPortalDemo() {
                     </div>
                     <div>
                       <h3 className="text-lg font-medium text-white">
-                        星澄酒店 · Portal 實驗室
+                        水漾月明度假文旅 · Portal 實驗室
                       </h3>
                       <p className="text-sm text-white/80">
                         看見智能客服的實際擺放效果

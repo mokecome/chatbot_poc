@@ -20,7 +20,7 @@ export function Chatbot() {
     {
       id: "1",
       content:
-        "您好！歡迎來到星澄國際酒店智能客服。我可以協助您查詢房型空房、安排餐飲與會議場地、預約接駁服務，以及提供館內設施與會員專屬優惠資訊。今天想先了解哪項服務呢？",
+        "您好！歡迎來到水漾月明度假文旅智能客服。我可以協助您查詢客房空房、安排湖畔餐飲與活動報名、預約接駁服務，以及提供館內設施與會員專屬優惠資訊。今天想先了解哪項服務呢？",
       isUser: false,
       timestamp: new Date(),
     },
@@ -124,7 +124,7 @@ export function Chatbot() {
               </div>
               <div>
                 <CardTitle className="flex items-center gap-2 text-white">
-                  星澄國際酒店智能客服
+                  水漾月明度假文旅智能客服
                   <Badge className="flex items-center gap-1 bg-white/20 text-white border-white/30">
                     <ConciergeBell className="w-3 h-3" />
                     禮賓
