@@ -24,7 +24,7 @@ export function ChatWelcomeMessage({ timestamp, onQuestionClick }: ChatWelcomeMe
           style={{ backgroundColor: HOTEL_PRIMARY_SOFT }}
         >
           <p className="whitespace-pre-wrap mb-4 select-text cursor-text">
-            您好！歡迎來到星澄國際酒店智能客服。我可以協助您查詢房型空房、安排餐飲與會議場地、預約接駁服務以及了解館內設施。今天想先從哪一項服務開始呢？
+            您好！歡迎來到水漾月明度假文旅智能客服。我可以協助您查詢客房空房、安排湖畔餐飲與活動報名、預約接駁服務以及了解館內設施。今天想先從哪一項服務開始呢？
           </p>
           <ChatFAQSection onQuestionClick={onQuestionClick} />
         </Card>

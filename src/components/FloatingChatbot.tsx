@@ -454,7 +454,7 @@ export function FloatingChatbot() {
                     <Bot className="w-4 h-4 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-medium text-white">星澄國際酒店智能客服</h3>
+                    <h3 className="text-lg font-medium text-white">水漾月明度假文旅智能客服</h3>
                     {!isMinimized && (
                       <p className="text-sm text-white/80">
                         24 小時旅宿管家 · 訂房、餐飲、接駁即時回覆

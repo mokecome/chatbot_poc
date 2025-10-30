@@ -16,7 +16,7 @@ export function ChatFAQSection({ onQuestionClick }: ChatFAQSectionProps) {
     {
       id: "dining-reservation",
       label: "預約餐廳或酒吧",
-      question: "可以幫我預約明天晚上七點的星澄餐廳兩人晚餐嗎？"
+      question: "可以幫我預約明天晚上七點的水漾月明湖畔餐廳兩人晚餐嗎？"
     },
     {
       id: "late-checkout",

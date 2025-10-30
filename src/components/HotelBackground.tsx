@@ -23,10 +23,10 @@ export function HotelBackground() {
             Est. 1998
           </p>
           <h1 className="text-4xl md:text-5xl font-semibold tracking-wide">
-            星澄國際酒店
+            水漾月明度假文旅
           </h1>
           <p className="max-w-xl text-base md:text-lg text-white/75">
-            典雅入住體驗 · 頂級餐飲饗宴 · 專屬禮賓服務
+            湖畔景緻入住體驗 · 在地風味餐飲 · 專屬禮賓服務
           </p>
         </div>
         <div className="flex flex-wrap justify-center gap-4 text-sm text-white/60">

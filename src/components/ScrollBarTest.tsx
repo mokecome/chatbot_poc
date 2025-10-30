@@ -182,7 +182,7 @@ export function ScrollBarTest() {
                 <li>在聊天介面中確保容器使用 min-h-0 配合 flex 佈局</li>
                 <li>必要時強制顯示 ScrollBar 並調整樣式以符合品牌色</li>
                 <li>設定 scrollbarGutter: "stable always" 讓滾動條保留空間</li>
-                <li>使用星澄酒店主題色 {ACCENT} 打造一致的視覺體驗</li>
+                <li>使用水漾月明度假文旅主題色 {ACCENT} 打造一致的視覺體驗</li>
               </ul>
             </div>
           </div>
